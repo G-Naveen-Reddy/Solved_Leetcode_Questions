@@ -1,0 +1,41 @@
+OPTIMIZED APPROACH : USING HASHMAP
+TIME COMPLEXITY : o(N)
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+        int ans[]={-1,-1};
+        for(int i=0;i<nums.length;i++)
+        {
+            int rem=target-nums[i];
+            if(map.containsKey(rem))
+            {
+                ans[0]=i;
+                ans[1]=map.get(rem);
+            }
+        else{
+         map.put(nums[i],i);
+        }
+        }
+        return ans;
+  }
+
+
+BRUTE_FORCE APPROACH : USING NESTED ARRAYS
+TIME COMPLEXITY : O(N^2)
+
+class Solution {
+    public int[] twoSum(int[] arr, int target) {
+        for(int i=0;i<arr.length;i++)
+        {
+            for(int j=i+1;j<arr.length;j++)
+            {
+                if((arr[i]+arr[j])==target)
+                {
+                    return new int[]{i,j};
+                
+                }
+            }
+        }
+        return new int[]{};
+    }
+}
