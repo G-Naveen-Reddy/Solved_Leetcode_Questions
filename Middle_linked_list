@@ -1,0 +1,18 @@
+Optimised Approach : Using Slow and fast pointer
+
+class Solution {
+    public ListNode middleNode(ListNode head) {
+       ListNode slow=head;
+       ListNode fast=head;
+       while(fast!=null&&fast.next!=null)
+       {
+        slow=slow.next;
+        fast=fast.next.next;
+       }   
+       return slow;
+    }
+}
+
+Brute_Force Approach : 
+1. calculating length of linked list
+2. travesing the loop till middle of its length and returning the middle value
