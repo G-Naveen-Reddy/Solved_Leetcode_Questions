@@ -1,6 +1,7 @@
-OPTIMIZED APPROACH : USING HASHMAP
-TIME COMPLEXITY : o(N)
-class Solution {
+1. OPTIMIZED APPROACH : USING HASHMAP 
+   TIME COMPLEXITY : o(N)
+
+   class Solution {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer,Integer> map=new HashMap<>();
         int ans[]={-1,-1};
@@ -17,13 +18,13 @@ class Solution {
         }
         }
         return ans;
-  }
+   }
 
 
-BRUTE_FORCE APPROACH : USING NESTED ARRAYS
-TIME COMPLEXITY : O(N^2)
+2. BRUTE_FORCE APPROACH : USING NESTED ARRAYS
+   TIME COMPLEXITY : O(N^2)
 
-class Solution {
+   class Solution {
     public int[] twoSum(int[] arr, int target) {
         for(int i=0;i<arr.length;i++)
         {
@@ -38,4 +39,4 @@ class Solution {
         }
         return new int[]{};
     }
-}
+  }
