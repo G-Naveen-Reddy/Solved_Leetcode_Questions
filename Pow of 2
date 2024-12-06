@@ -1,0 +1,18 @@
+OPTIMIZED APPROACH : BEATS 100 % 
+TIME COMPLEXITY : O(1)
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+      return n>0 &&(n&(n-1))==0; 
+    }
+}
+
+2ND APPROACH : BEATS 45 %
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+      if(n==0 || n<0)
+        {
+          return false;
+        }
+        return (n&(n-1))==0;   
+    }
+}
