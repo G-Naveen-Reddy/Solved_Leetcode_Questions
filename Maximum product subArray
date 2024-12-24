@@ -1,4 +1,4 @@
-Best Approach : Beats 100% users
+Best Approach : Beats 100% users in 0 ms
 - the second for loop is used to check subarray from last to handle zero and negative numbers
 class Solution {
     public int maxProduct(int[] nums) {
