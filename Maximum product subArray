@@ -1,0 +1,23 @@
+Best Approach : Beats 100% users
+- the second for loop is used to check subarray from last to handle zero and negative numbers
+class Solution {
+    public int maxProduct(int[] nums) {
+        int cproduct=1,mproduct=Integer.MIN_VALUE;
+        for(int i=0;i<nums.length;i++)
+        {
+           cproduct*=nums[i];
+           mproduct=Math.max(cproduct,mproduct);
+           if(cproduct==0)
+             cproduct=1;
+        }
+        cproduct=1;
+        for(int i=nums.length-1;i>=0;i--)
+        {
+            cproduct*=nums[i];
+            mproduct=Math.max(cproduct,mproduct);
+            if(cproduct==0)
+              cproduct=1;
+        }
+        return mproduct;
+    }
+}
