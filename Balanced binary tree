@@ -1,0 +1,19 @@
+Definition : A binary tree is considered height-balanced if the difference in height between the left and right subtrees of any node is at most 1
+
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+       return height(root)!=-1;
+    }
+    public static int height(TreeNode root)
+    {
+        if(root==null) 
+           return 0;
+        int leftHeight=height(root.left);
+        int rightHeight=height(root.right);
+        if(leftHeight==-1 || rightHeight==-1) 
+           return -1;
+        if(Math.abs(rightHeight-leftHeight)>1) 
+           return -1;
+        return 1 + Math.max(leftHeight,rightHeight);
+    }
+}
