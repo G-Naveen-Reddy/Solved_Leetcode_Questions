@@ -1,0 +1,41 @@
+APPROACH 1 : REVERSEINORDER TRAVERSAL OF BST AND ADDING SUM TO EACH NODE VALUE
+TIME : O(N) , SPACE : O(H)
+class Solution {
+    static int sum;
+    public void Inorder(TreeNode root)
+    {
+        if(root==null) return;
+        Inorder(root.right);
+        root.val+=sum;
+        sum=root.val;
+        Inorder(root.left);
+    }
+    public TreeNode convertBST(TreeNode root) {
+        if(root==null) return null;
+        sum=0;
+        Inorder(root);
+        return root;
+    }
+}
+
+APPROACH 2: CREATING ARRAYLIST WITH INORDER TRAVERSAL OF BST AND DOING PREFIXSUM FROM LAST  
+TIME : O(N) , SPACE : O(N)
+class Solution {
+    public void Inorder(TreeNode root,List<TreeNode> res)
+    {
+        if(root==null) return;
+        Inorder(root.left,res);
+        res.add(root);
+        Inorder(root.right,res);
+    }
+    public TreeNode convertBST(TreeNode root) {
+        ArrayList<TreeNode> res=new ArrayList<>();
+        Inorder(root,res);
+        int n=res.size();
+        for(int i=n-2;i>=0;i--)
+        {
+            res.get(i).val+=res.get(i+1).val;
+        }
+        return root;
+    }
+}
