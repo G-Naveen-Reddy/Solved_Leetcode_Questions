@@ -1,0 +1,21 @@
+APPROACH : PROPERTY - Inorder traversal of BST is always contains sorted elements
+so for this we need to convert preorder to inorder by copying its elements and sorting it, Then constructing BST from preorder and inorder
+class Solution {
+    public TreeNode construct(int[] preorder,int[] inorder,int prelow,int prehigh, int inlow,int inhigh)
+    {
+        if(inlow>inhigh || prelow>prehigh) return null;
+        TreeNode root=new TreeNode(preorder[prelow]);
+        int Root=0;
+        while(inorder[Root]!=preorder[prelow]) Root++;
+        int leftsize=Root-inlow;
+        root.left=construct(preorder,inorder,prelow+1,prelow+leftsize,inlow,Root-1);
+        root.right=construct(preorder,inorder,prelow+leftsize+1,prehigh,Root+1,inhigh);
+        return root;
+    }
+    public TreeNode bstFromPreorder(int[] preorder) {
+        int n=preorder.length;
+        int[] inorder=Arrays.copyOf(preorder,n);
+        Arrays.sort(inorder);
+        return construct(preorder,inorder,0,n-1,0,n-1);
+    }
+}
