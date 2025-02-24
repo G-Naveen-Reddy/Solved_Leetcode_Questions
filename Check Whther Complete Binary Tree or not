@@ -1,0 +1,16 @@
+class Solution {
+    public static int size(TreeNode root)
+    {
+        if(root==null) return 0;
+        return 1+size(root.left)+size(root.right);
+    }
+    public static boolean isCBT(TreeNode root,int i,Integer N)
+    {
+        if(root==null) return true;
+        if(i>=N) return false;
+        return isCBT(root.left,2*i+1,N) && isCBT(root.right,2*i+2,N);
+    }
+    public boolean isCompleteTree(TreeNode root) {
+        return (isCBT(root,0,size(root)));
+    }
+}
