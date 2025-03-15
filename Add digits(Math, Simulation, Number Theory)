@@ -1,0 +1,27 @@
+OPTIMAL APPROACH : O(1)
+class Solution {
+    public int addDigits(int num) {
+        if(num==0) return 0;
+        if(num<10) return num;
+        return 1 + (num-1) % 9; // digital root formula helps you keep adding the digits of a number until you're left with a single digit.
+    }
+}
+
+ITERATIVE APPROACH : O(Log(N))
+class Solution {
+    public int addDigits(int num) {
+        if(num==0) return 0;
+        if(num<10) return num;
+        while(num>=10)
+        {
+          int sum=0;
+        while(num>0)
+        {
+            sum+=num % 10;
+            num/=10;
+        }
+        num=sum;
+        }
+        return num;
+    }
+}
