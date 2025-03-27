@@ -5,7 +5,7 @@ Output: 2
 Explanation:
 n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums
 
-Optimzed Approach : O(N), Subtract (Actual_Sum)-(Array_Sum)
+1. Optimzed Approach : O(N), Subtract (Actual_Sum)-(Array_Sum)
 class Solution {
     public int missingNumber(int[] nums) {
         int n=nums.length,nums_sum=0;
@@ -16,4 +16,20 @@ class Solution {
         }
         return actual_sum-nums_sum;
     }
+}
+
+2. Optimzed Approach : O(N), XOR (Actual_Xor) ^ (Array_Xor)
+class Solution {
+    public int missingNumber(int[] nums) {
+        int res=0,result=0;
+        for(int i=0;i<=nums.length;i++)
+        {
+            res^=i;
+        }
+        for(int i=0;i<nums.length;i++)
+        {
+            result^=nums[i];
+        }
+        return res ^ result;
+   }
 }
