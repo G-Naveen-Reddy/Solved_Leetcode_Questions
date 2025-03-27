@@ -1,0 +1,31 @@
+Input: allowed = "ab", words = ["ad","bd","aaab","baa","badab"]
+Output: 2
+Explanation: Strings "aaab" and "baa" are consistent since they only contain characters 'a' and 'b'.
+
+class Solution {
+    public int countConsistentStrings(String allowed, String[] words) {
+        HashSet<Character> allowedset=new HashSet<>();
+        for(char ele : allowed.toCharArray())
+        {
+            allowedset.add(ele);
+        }
+        int count=0;
+        for(String word : words)
+        {
+            boolean isConsistent=true;
+            for(char ch : word.toCharArray())
+            {
+                if(!allowedset.contains(ch))
+                {
+                    isConsistent=false;
+                    break;
+                }
+            }
+            if(isConsistent)
+            {
+                count++;
+            }
+        }
+        return count;
+    } 
+}
