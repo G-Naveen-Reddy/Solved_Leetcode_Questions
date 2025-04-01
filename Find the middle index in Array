@@ -1,0 +1,25 @@
+Return the leftmost middleIndex that satisfies the condition, or -1 if there is no such index.
+Input: nums = [2,3,-1,8,4]
+Output: 3
+Explanation: The sum of the numbers before index 3 is: 2 + 3 + -1 = 4
+The sum of the numbers after index 3 is: 4 = 4
+
+BEST APPROACH:
+class Solution {
+    public int findMiddleIndex(int[] nums) {
+        int totalSum=0,leftSum=0;
+        for(int num  : nums)
+        {
+            totalSum+=num;
+        }
+        for(int i=0;i<nums.length;i++)
+        {
+          if(leftSum==(totalSum-leftSum-nums[i]))
+          {
+            return i;
+          }
+          leftSum+=nums[i];
+        }
+        return -1;
+    }
+}
