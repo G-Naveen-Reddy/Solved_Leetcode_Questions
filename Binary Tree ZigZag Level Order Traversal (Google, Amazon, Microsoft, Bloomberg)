@@ -1,0 +1,59 @@
+APPROACH 1 : 
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root == null)
+            return result;
+        queue.add(root);
+        int direction = 1;
+        while (!queue.isEmpty()) {
+            int levelsize = queue.size();
+            List<Integer> currentlevel = new ArrayList<>();
+            for (int i = 0; i < levelsize; i++) {
+                TreeNode currentNode = queue.remove();
+                currentlevel.add(currentNode.val);
+                if (currentNode.left != null)
+                    queue.add(currentNode.left);
+                if (currentNode.right != null)
+                    queue.add(currentNode.right);
+            }
+            if (direction == -1) {
+                Collections.reverse(currentlevel);
+            }
+            result.add(currentlevel);
+            direction *= -1;
+        }
+        return result;
+    }
+}
+
+APPROACH 2 : 
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        ArrayList<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root == null)
+            return result;
+        queue.add(root);
+        int direction = 1;
+        while (!queue.isEmpty()) {
+            ArrayList<Integer> currentlevel = new ArrayList<>();
+            int levelsize = queue.size();
+            for (int i = 0; i < levelsize; i++) {
+                TreeNode currentNode = queue.remove();
+                if (direction == 1)
+                    currentlevel.add(currentNode.val);
+                else
+                    currentlevel.add(0, currentNode.val); // reverses the list
+                if (currentNode.left != null)
+                    queue.add(currentNode.left);
+                if (currentNode.right != null)
+                    queue.add(currentNode.right);
+            }
+            result.add(currentlevel);
+            direction *= -1;
+        }
+        return result;
+    }
+}
