@@ -1,0 +1,26 @@
+APPROACH : Using Monotonic Stack (efficient for finding nextGreater and previousGreater Element)
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        Stack<Integer> st = new Stack<>();
+        for (int i = nums2.length - 1; i >= 0; i--) {
+            int num = nums2[i];
+            while (!st.isEmpty() && st.peek() <= num) {
+                st.pop();
+            }
+            map.put(num, st.isEmpty() ? -1 : st.peek());
+            st.push(num);
+        }
+        int res[]= new int[nums1.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = map.get(nums1[i]);
+        }
+        return res;
+    }
+}
+
+Previous Greater Element : change the traversal logic
+for (int i = nums : nums2) {
+            
+else everything remains same
