@@ -1,0 +1,18 @@
+Input: root = [1,2,2,3,4,4,3]
+Output: true
+
+class Solution {
+    public boolean same(TreeNode root, TreeNode Root) {
+        if (root == null && Root == null)
+            return true;
+        if (root == null || Root == null)
+            return false;
+        return (root.val == Root.val) && same(root.left, Root.right) && same(root.right, Root.left);
+    }
+
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)
+            return true;
+        return same(root.left, root.right);
+    }
+}
