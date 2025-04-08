@@ -1,0 +1,46 @@
+Input: coins = [1,2,5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+
+APPROACH : Tabulation
+
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int dp[]=new int[amount+1];
+        Arrays.fill(dp,amount+1);
+        dp[0]=0;
+        for(int coin : coins)
+        {
+            for(int j=coin;j<=amount;j++)
+            {
+                dp[j]=Math.min(dp[j], dp[j-coin]+1);
+            }
+        }
+        return dp[amount]> amount ? -1 : dp[amount];
+    }
+}
+
+APPROACH : Recursion + Memoization
+
+class Solution {
+    public long count(int i,int coins[],int amount,long dp[][])
+    {
+        if(i==coins.length)
+        {
+            if(amount==0) return 0;
+            else return Integer.MAX_VALUE;
+        }
+        if(dp[i][amount]!=-1) return dp[i][amount];
+        long skip=count(i+1,coins,amount,dp);
+        if(amount-coins[i]<0) return dp[i][amount]=skip;
+        long pick= 1 + count(i,coins,amount-coins[i],dp);
+        return dp[i][amount]=Math.min(skip,pick);
+    }
+    public int coinChange(int[] coins, int amount) {
+        long[][] dp=new long[coins.length][amount+1];
+        for(long num[] : dp) Arrays.fill(num,-1);
+        int ans=(int)count(0,coins,amount,dp);
+        if(ans==Integer.MAX_VALUE) return -1;
+        else return ans;
+    }
+}
