@@ -1,0 +1,32 @@
+I : Using greedy Approach
+class Solution {
+    public boolean canJump(int[] nums) {
+        int reachable=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(i>reachable)
+            {
+                return false;
+            }
+            reachable=Math.max(reachable, i+nums[i]);
+        }
+        return true;
+    }
+}
+
+II : Using greedy Approach
+class Solution {
+    public int jump(int[] nums) {
+        int count=0,reachable=0,jump_limit=0;
+        for(int i=0;i<nums.length-1;i++)
+        {
+            reachable=Math.max(reachable, i+nums[i]);
+            if(i==jump_limit)
+            {
+                count++;
+                jump_limit=reachable;
+            }
+        }
+        return count;
+    }
+}
