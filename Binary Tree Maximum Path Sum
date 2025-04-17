@@ -1,0 +1,23 @@
+Best Approach:
+
+class Solution {
+    public int lineSum(TreeNode root, int[] maxSum) {
+        if (root == null)
+            return 0;
+        int leftLineSum = lineSum(root.left, maxSum);
+        int rightLineSum = lineSum(root.right, maxSum);
+        int pathSum = root.val;
+        if (leftLineSum > 0)
+            pathSum += leftLineSum;
+        if (rightLineSum > 0)
+            pathSum += rightLineSum;
+        maxSum[0] = Math.max(maxSum[0], pathSum);
+        return root.val + Math.max(0, Math.max(leftLineSum, rightLineSum));
+    }
+
+    public int maxPathSum(TreeNode root) {
+        int maxSum[] = { Integer.MIN_VALUE };
+        lineSum(root, maxSum);
+        return maxSum[0];
+    }
+}
