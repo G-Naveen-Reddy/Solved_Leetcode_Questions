@@ -1,3 +1,29 @@
+USING : DFS APPROACH , (BEST SOLUTION)
+
+class Solution {
+    public boolean canVisitAllRooms(List<List<Integer>> adj) {
+        int n=adj.size();
+        boolean visited[]=new boolean[n];
+        bfs(0,adj,visited);
+        for(boolean ele : visited)
+        {
+            if(ele==false) return false;
+        }
+        return true;
+    }
+    public void bfs(int start,List<List<Integer>> adj,boolean[] visited)
+    {
+        visited[start]=true;
+        for(int ele : adj.get(start))
+        {
+            if(!visited[ele]) bfs(ele,adj,visited);
+        }
+    }
+}
+
+
+USING : BFS APPROACH
+
 class Solution {
     public boolean canVisitAllRooms(List<List<Integer>> adj) {
         int n=adj.size();
