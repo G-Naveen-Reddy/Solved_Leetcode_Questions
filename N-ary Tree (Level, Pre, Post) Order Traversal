@@ -1,0 +1,58 @@
+class Solution {
+    public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> result=new ArrayList<>();
+        Queue<Node> queue=new LinkedList<>();
+        if(root==null) return result;
+        queue.add(root);
+        while(!queue.isEmpty())
+        {
+            int levelSize=queue.size();
+            List<Integer> list=new ArrayList<>();
+            for(int i=0;i<levelSize;i++)
+            {
+                Node node=queue.remove();
+                list.add(node.val);
+                for(Node child : node.children)
+                {
+                    queue.add(child);
+                }
+            }
+            result.add(list);
+        }
+        return result;
+    }
+}
+
+class Solution {
+    public List<Integer> preorder(Node root) {
+        List<Integer> list=new ArrayList<>();
+        traversal(root,list);
+        return list;
+    }
+    public void traversal(Node root, List<Integer> list)
+    {
+        if(root==null) return;
+        list.add(root.val);
+        for(Node child : root.children)
+        {
+            traversal(child,list);
+        }
+    }
+}
+
+class Solution {
+    public List<Integer> postorder(Node root) {
+        List<Integer> list=new ArrayList<>();
+        traversal(root,list);
+        return list;
+    }
+    public void traversal(Node root, List<Integer> list)
+    {
+        if(root==null) return;
+        for(Node child : root.children)
+        {
+            traversal(child,list);
+        }
+        list.add(root.val);
+    }
+}
