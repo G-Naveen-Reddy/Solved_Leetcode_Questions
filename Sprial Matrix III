@@ -1,0 +1,28 @@
+class Solution {
+    public int[][] spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
+        int[][] matrix=new int[rows*cols][2];
+        int dirRow[]={0,1,0,-1};
+        int dirCol[]={1,0,-1,0};
+        int steps=1, count=0;
+        int r=rStart, c=cStart;
+        matrix[count++]=new int[]{r,c};
+        while(count<rows*cols)
+        {
+            for(int d=0;d<4;d++)
+            {
+                int stepCount=steps;
+                for(int i=0;i<stepCount;i++)
+                {
+                    r+=dirRow[d];
+                    c+=dirCol[d];
+                    if(r>=0 && r<rows && c>=0 && c<cols)
+                    {
+                        matrix[count++]=new int[]{r,c};
+                    }
+                }
+                if(d==1 || d==3) steps++;
+            }
+        }
+        return matrix;
+    }
+}
