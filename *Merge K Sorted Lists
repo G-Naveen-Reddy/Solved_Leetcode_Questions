@@ -1,3 +1,6 @@
+OPTMIZED APPROACH :
+TIME : O( N log(K))
+SPACE : O(K)
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         PriorityQueue<ListNode> pq=new PriorityQueue<>((a,b)-> a.val-b.val);
@@ -20,3 +23,41 @@ class Solution {
         return dummy.next;
     }
 }
+
+BRUTE FORCE APPROACH : 
+TIME : O( N log(N))
+SPACE : O(N)
+
+1. extract all the values into arraylist
+2. sort the arraylist
+3. creating the new sorted linkedlist
+
+
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        List<Integer> values = new ArrayList<>();
+
+        // Step 1: Extract all node values
+        for (ListNode list : lists) {
+            while (list != null) {
+                values.add(list.val);
+                list = list.next;
+            }
+        }
+
+        // Step 2: Sort the values
+        Collections.sort(values);
+
+        // Step 3: Build a new sorted linked list
+        ListNode dummy = new ListNode(0);
+        ListNode current = dummy;
+        for (int val : values) {
+            current.next = new ListNode(val);
+            current = current.next;
+        }
+
+        return dummy.next;
+    }
+}
+
+
